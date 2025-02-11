@@ -1,0 +1,22 @@
+{{ block "content" .}}
+<div class="card bg-sohbet border-0 m-0 p-0">
+
+    <div class="card-header text-center">
+        <h4>{{.Title}}</h4>
+        <p class="lead">{{.Description}}</p>
+    </div>
+    <hr class="my-4">
+    <div class="card-body">
+        <div id="chat-box" class="card border-0 m-0 p-0 position-relative bg-transparent" style="overflow-y: auto; height: 50vh;">
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <div class="input-group">
+            <textarea class="form-control" aria-label="With textarea" aria-describedby="send-btn" id="msg"></textarea>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}

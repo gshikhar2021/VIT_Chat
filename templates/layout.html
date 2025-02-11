@@ -1,0 +1,134 @@
+{{ define "layout" }}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>VIT Chat</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/sidebar.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+      <!-- Custom styles for this template -->
+      <link href="/static/css/signin.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/js/font-awesome.min.js"></script>
+</head>
+
+<body>
+    <!-- Modal -->
+    <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="create-modal-title"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Creating chat room...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" id="create-new-room" novalidate>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="input-title">Title:</label>
+                            <input type="text" class="form-control" id="input-title" placeholder="My own chat room" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                              </div>
+                              <div class="invalid-feedback" id='title-invalid-feedback'>
+                                Please provide a valid title!
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-description">Description:</label>
+                            <input type="text" class="form-control" id="input-description" placeholder="Description"
+                                aria-label="Description" aria-describedby="addon-dots">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="input-type">Type:</label>
+                                <select id="input-type" class="form-control" aria-describedby="typeHelpInline" onchange="updateTypeDescription($(this).val());" required>
+                                    <option selected value="public">Public</option>
+                                    <option value="private">Private</option>
+                                    <option value="hidden">Secret</option>
+                                </select>
+                                <small id="typeHelpInline" class="text-muted">
+                                    Public rooms are fully open and available to join for everyone!
+                                </small>
+                            </div>
+                            <div class="form-group col-md-6" id="password-option" hidden="true">
+                                <label for="input-password">Password:</label>
+                                <input type="password" class="form-control" id="input-password"
+                                    aria-describedby="passwordHelpInline" minlength=8 maxlength=20>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid password!
+                                    </div>
+                                <small id="passwordHelpInline" class="text-muted">
+                                    Must be 8-20 characters long.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                        <button type="button" class="btn btn-primary" onclick="newRoom();">Submit</button>
+                    </div>
+                </form>
+                <script>
+                    // Example starter JavaScript for disabling form submissions if there are invalid fields
+                    (function() {
+                      'use strict';
+                      window.addEventListener('load', function() {
+                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                        var forms = document.getElementsByClassName('needs-validation');
+                        // Loop over them and prevent submission
+                        var validation = Array.prototype.filter.call(forms, function(form) {
+                          form.addEventListener('submit', function(event) {
+                            if (form.checkValidity() === false) {
+                              event.preventDefault();
+                              event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                          }, false);
+                        });
+                      }, false);
+                    })();
+                    </script>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div style="display:none;" id="error-alert" class="alert alert-danger col-sm-12"></div>
+        {{ template "sidebar" }}
+        <!-- Page Content  -->
+        <div id="content" class="purple-img">
+            {{ template "navbar" }}
+            <div id="inner-content">
+                {{ template "content" . }}
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/jquery-3.4.0.min.js"></script>
+    <script src="/static/js/popper.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/test.js"></script>
+    <script type="text/javascript" src="/static/js/room.js"></script>
+    <script type="text/javascript" src="/static/js/index.js"></script>
+    <script type="text/javascript" src="/static/js/chat.js"></script>
+
+
+</body>
+
+</html>
+
+{{ end }}

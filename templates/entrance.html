@@ -1,0 +1,83 @@
+{{ define "content" }}
+<div class="text-center" id="signup">
+    <form class="form-signin" novalidate>
+        <h1><i class="fas fa-comment-dots"></i>
+
+        </h1>
+        <h1 class="h3 mb-3 font-weight-normal">Let's Chat!</h1>
+        <label for="input-user" class="sr-only">Username</label>
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="user-addon">&#128587</span>
+            </div>
+            <input type="username" id="input-user" class="form-control" placeholder="Username" required autofocus
+                aria-label="Username" aria-describedby="user-addon"
+                onkeyup="updateTemplateStyle($('#input-user').val(),$('#color-select').val());">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback" id='user-invalid-feedback'>
+                Please provide a valid username!
+            </div>
+        </div>
+        {{if . }}
+        <label for="inputPassword" class="sr-only">Password</label>
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="password-addon" style="height: 46px;">&#128273;</span>
+            </div>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required
+                aria-label="Username" aria-describedby="password-addon">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback" id='password-invalid-feedback'>
+                Incorrect Password!
+            </div>
+        </div>
+        {{else }}
+        <div id="inputPassword" style="visibility: hidden"></div>
+        {{ end }}
+        <div class="checkbox mb-3">
+            <select class="custom-select" id="color-select"
+                onchange="updateTemplateStyle($('#input-user').val(),$('#color-select').val());" required>
+                <option value="" disabled selected>Pick your style...</option>
+                <option value="purple">Purple</option>
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="gray">Gray</option>
+                <option value="turquoise">Turquoise</option>
+                <option value="indigo">Indigo</option>
+                <option value="magenta">Magenta</option>
+                <option value="black">Black</option>
+                <option value="yellow">Yellow</option>
+                <option value="orange">Orange</option>
+            </select>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please pick a valid color!
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Message:</h5>
+                        <div id="chat-box" class="card border-0 m-0 p-0 position-relative bg-transparent">
+                            <div class="balon1 p-2 m-0 position-relative" data-is="You - 3:20 pm">
+                                <a class="float-right" style="background: #7386D5; color: #ffffff !important;"> Hey
+                                    there! What's up? </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="validateChatEntrance();">Enter chat</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2019-2020</p>
+    </form>
+</div>
+{{ end }}
