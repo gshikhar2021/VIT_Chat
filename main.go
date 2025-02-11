@@ -5,8 +5,6 @@ import (
 	"net/http"
 	"os"
 	"time"
-
-	"github.com/DavidSchott/chitchat/handler"
 )
 
 func main() {
@@ -24,7 +22,7 @@ func main() {
 		WriteTimeout:   time.Duration(handler.Config.WriteTimeout * int64(time.Second)),
 		MaxHeaderBytes: 1 << 20,
 	}
-	fmt.Println("ChitChat", version(), "started at", server.Addr)
+	fmt.Println("VIT Chat", version(), "started at", server.Addr)
 	if _, exist := os.LookupEnv("PORT"); exist {
 		// TLS is already enabled on Heroku PaaS platform
 		if err := server.ListenAndServe(); err != nil {
